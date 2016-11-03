@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Telerik Reporting Demo</h1>
+    <p class="lead">Discovers .trdx files in the /Reports folder, and lists them as links below.</p>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h2>Choose a Report</h2>
+
+        @foreach (ReportInfo report in ViewBag.ReportFiles)
+        {
+            @Html.RouteLink(report.ReportTitle, new { action = "Index", controller = "Reporting", report = report.ReportFilename })<br />
+
+            @* If you need to open each report in a new tab, then add HTML options specifying a target value
+                @Html.RouteLink(report.ReportTitle, new { action = "Index", controller = "Reporting", report = report.ReportFilename },
+                                                    new { target = "_blank" })
+            *@
+        }
+    </div>
+</div>

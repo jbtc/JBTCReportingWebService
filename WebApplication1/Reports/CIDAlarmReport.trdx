@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report Width="6.70000012715658in" Name="cidtest" DocumentMapText="" xmlns="http://schemas.telerik.com/reporting/2012/3.8">
+  <DataSources>
+    <SqlDataSource ConnectionString="CIDIOPSReporting" SelectCommand="SELECT &#xD;&#xA;DISTINCT&#xD;&#xA;      [Active]&#xD;&#xA;          &#xD;&#xA;  FROM [CID_IOPS_Reporting].[dbo].[Term_1_PBB_Alarms] &#xD;&#xA;&#x9;where convert(date,AlarmDateTime) between (CASE WHEN @fromDays is NULL THEN (convert(date,getdate())) ELSE @fromDays END)&#xD;&#xA;&#x9;and  (CASE WHEN @toDays is NULL THEN (convert(date,getdate())) ELSE @toDays END)&#xD;&#xA;" Name="active-alarm-CIDlDataSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="DateTime" Name="@fromDays">
+          <Value>
+            <String>= Parameters.fromDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="DateTime" Name="@toDays">
+          <Value>
+            <String>= Parameters.toDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="CIDIOPSReporting" SelectCommand="SELECT &#xD;&#xA;DISTINCT&#xD;&#xA;      [AlarmText]&#xD;&#xA;          &#xD;&#xA;  FROM [CID_IOPS_Reporting].[dbo].[Term_1_PBB_Alarms] &#xD;&#xA;&#x9;where convert(date,AlarmDateTime) between (CASE WHEN @fromDays is NULL THEN (convert(date,getdate())) ELSE @fromDays END)&#xD;&#xA;&#x9;and  (CASE WHEN @toDays is NULL THEN (convert(date,getdate())) ELSE @toDays END)&#xD;&#xA;" Name="tag-alarm-CIDDataSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="DateTime" Name="@fromDays">
+          <Value>
+            <String>= Parameters.fromDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="DateTime" Name="@toDays">
+          <Value>
+            <String>= Parameters.toDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="CIDIOPSReporting" SelectCommand="SELECT &#xD;&#xA;DISTINCT&#xD;&#xA;      [Gate]&#xD;&#xA;          &#xD;&#xA;  FROM [CID_IOPS_Reporting].[dbo].[Term_1_PBB_Alarms] &#xD;&#xA;&#x9;where convert(date,AlarmDateTime) between (CASE WHEN @fromDays is NULL THEN (convert(date,getdate())) ELSE @fromDays END)&#xD;&#xA;&#x9;and  (CASE WHEN @toDays is NULL THEN (convert(date,getdate())) ELSE @toDays END)&#xD;&#xA;" Name="gate-alarm-CIDDataSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="DateTime" Name="@fromDays">
+          <Value>
+            <String>= Parameters.fromDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="DateTime" Name="@toDays">
+          <Value>
+            <String>= Parameters.toDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+    </SqlDataSource>
+    <SqlDataSource ConnectionString="CIDIOPSReporting" SelectCommand="&#xD;&#xA;&#xD;&#xA;SELECT *&#xD;&#xA;  FROM [CID_IOPS_Reporting].[dbo].[Term_1_PBB_Alarms] &#xD;&#xA;where&#xD;&#xA;convert(date,AlarmDateTime) between (CASE WHEN @fromDays is NULL THEN (convert(date,getdate())) ELSE @fromDays END)&#xD;&#xA;&#x9;and  (CASE WHEN @toDays is NULL THEN (convert(date,getdate())) ELSE @toDays END)&#xD;&#xA;&#xD;&#xA; &#x9;and (@Gate is NULL OR Gate=@Gate)&#xD;&#xA;        and (@Tag is NULL OR Tag=@Tag)&#xD;&#xA;&#x9;and (@AlarmActive is NULL OR Active=@AlarmActive)&#xD;&#xA;  order by alarmdatetime desc&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" Name="CIDAlarmTableDataSource">
+      <Parameters>
+        <SqlDataSourceParameter DbType="DateTime" Name="@fromDays">
+          <Value>
+            <String>= Parameters.fromDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="DateTime" Name="@toDays">
+          <Value>
+            <String>= Parameters.toDays.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="String" Name="@Gate">
+          <Value>
+            <String>= Parameters.Gate.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="String" Name="@Tag">
+          <Value>
+            <String>= Parameters.Tag.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+        <SqlDataSourceParameter DbType="String" Name="@AlarmActive">
+          <Value>
+            <String>= Parameters.AlarmActive.Value</String>
+          </Value>
+        </SqlDataSourceParameter>
+      </Parameters>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <PageHeaderSection Height="1.39999993642171in" Name="pageHeaderSection1">
+      <Items>
+        <PictureBox Value="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" Width="2.30000003178914in" Height="0.800000111262004in" Left="0in" Top="0in" Sizing="ScaleProportional" MimeType="image/gif" Name="pictureBox1" />
+        <TextBox Width="4.50000063578288in" Height="0.299999932448069in" Left="0.899999916553497in" Top="1in" Value="PBB Alarms Daily  Summary Report" Name="textBox7" DocumentMapText="">
+          <Style Color="0, 0, 160">
+            <Font Name="Verdana" Size="16pt" Bold="True" />
+          </Style>
+        </TextBox>
+        <PictureBox Value="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" Width="1.80000019073486in" Height="0.800000131130219in" Left="3.70000012715658in" Top="0in" Sizing="ScaleProportional" MimeType="image/jpeg" Name="pictureBox2" />
+      </Items>
+    </PageHeaderSection>
+    <DetailSection Height="3.50000031789144in" Name="detailSection1">
+      <Items>
+        <Table DataSourceName="CIDAlarmTableDataSource" Width="5.60416504351847in" Height="0.4in" Left="0in" Top="1.79999987284342in" Name="table1" StyleName="Corporate.TableNormal">
+          <Body>
+            <Cells>
+              <TableCell RowIndex="0" ColumnIndex="0" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.49791584371286in" Height="0.2in" Left="0in" Top="0in" Value="= Fields.AlarmDateTime" Name="textBox6" StyleName="Corporate.TableBody" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="1" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.46666797115175in" Height="0.2in" Left="0in" Top="0in" Value="= Fields.ClearedDateTime" Name="textBox8" StyleName="Corporate.TableBody" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="2" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="1.59166531899305in" Height="0.2in" Left="0in" Top="0in" Value="= Fields.AlarmText" Name="textBox9" StyleName="Corporate.TableBody" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="3" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="0.591666518558979in" Height="0.2in" Left="0in" Top="0in" Value="= Fields.Gate" Name="textBox10" StyleName="Corporate.TableBody" />
+                </ReportItem>
+              </TableCell>
+              <TableCell RowIndex="0" ColumnIndex="4" RowSpan="1" ColumnSpan="1">
+                <ReportItem>
+                  <TextBox Width="0.456249367413953in" Height="0.2in" Left="0in" Top="0in" Value="= Fields.Active" Name="textBox11" StyleName="Corporate.TableBody" />
+                </ReportItem>
+              </TableCell>
+            </Cells>
+            <Columns>
+              <Column Width="1.49791637574841in" />
+              <Column Width="1.46666780413461in" />
+              <Column Width="1.59166543093246in" />
+              <Column Width="0.591666545716416in" />
+              <Column Width="0.456249429792253in" />
+            </Columns>
+            <Rows>
+              <Row Height="0.2in" />
+            </Rows>
+          </Body>
+          <Corner />
+          <RowGroups>
+            <TableGroup Name="Detail">
+              <Groupings>
+                <Grouping />
+              </Groupings>
+            </TableGroup>
+          </RowGroups>
+          <ColumnGroups>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="1.49791584371286in" Height="0.2in" Left="0in" Top="0in" Value="Alarm Date Time" Name="textBox1" StyleName="Corporate.TableHeader" />
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="1.46666797115175in" Height="0.2in" Left="0in" Top="0in" Value="Cleared Date Time" Name="textBox2" StyleName="Corporate.TableHeader" />
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="1.59166531899305in" Height="0.2in" Left="0in" Top="0in" Value="Alarm Text" Name="textBox3" StyleName="Corporate.TableHeader" />
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="0.591666518558979in" Height="0.2in" Left="0in" Top="0in" Value="Gate" Name="textBox4" StyleName="Corporate.TableHeader" />
+              </ReportItem>
+            </TableGroup>
+            <TableGroup>
+              <ReportItem>
+                <TextBox Width="0.456249367413953in" Height="0.2in" Left="0in" Top="0in" Value="Active" Name="textBox5" StyleName="Corporate.TableHeader" />
+              </ReportItem>
+            </TableGroup>
+          </ColumnGroups>
+        </Table>
+        <Graph DataSourceName="CIDAlarmTableDataSource" Width="5.61454200744629in" Height="1.8000005086263in" Left="0.00003933906555176in" Top="0in" Name="graph1">
+          <PlotAreaStyle LineWidth="0in" LineColor="LightGray" />
+          <Axes>
+            <GraphAxis Name="graphAxis2">
+              <MajorGridLineStyle LineWidth="1px" LineColor="LightGray" />
+              <MinorGridLineStyle Visible="False" LineWidth="1px" LineColor="LightGray" />
+              <Scale>
+                <CategoryScale />
+              </Scale>
+            </GraphAxis>
+            <GraphAxis Name="graphAxis1">
+              <MajorGridLineStyle LineWidth="1px" LineColor="LightGray" />
+              <MinorGridLineStyle Visible="False" LineWidth="1px" LineColor="LightGray" />
+              <Scale>
+                <NumericalScale />
+              </Scale>
+            </GraphAxis>
+          </Axes>
+          <CoordinateSystems>
+            <CartesianCoordinateSystem XAxis="graphAxis2" YAxis="graphAxis1" Name="cartesianCoordinateSystem1" />
+          </CoordinateSystems>
+          <Style>
+            <Padding Left="10px" Right="10px" Top="10px" Bottom="10px" />
+          </Style>
+          <SeriesGroups>
+            <GraphGroup Name="seriesGroup" />
+          </SeriesGroups>
+          <CategoryGroups>
+            <GraphGroup Name="gateGroup">
+              <Groupings>
+                <Grouping Expression="= Fields.Gate" />
+              </Groupings>
+              <Sortings>
+                <Sorting Expression="= Fields.Gate" Direction="Asc" />
+              </Sortings>
+            </GraphGroup>
+          </CategoryGroups>
+          <Series>
+            <BarSeries CoordinateSystem="cartesianCoordinateSystem1" CategoryGroup="gateGroup" SeriesGroup="seriesGroup" Y="= Count(Fields.Gate)" ArrangeMode="Stacked" DataPointLabel="= Count(Fields.Gate)" Name="barSeries1">
+              <DataPointStyle Visible="True" LineWidth="0in" />
+              <DataPointLabelStyle Visible="False" />
+              <LegendItem />
+            </BarSeries>
+          </Series>
+          <Legend Position="Absolute" IsInsidePlotArea="False">
+            <Style Visible="False" LineWidth="0in" LineColor="LightGray" />
+          </Legend>
+        </Graph>
+        <TextBox Width="5.61458079020182in" Height="0.399999936421712in" Left="0in" Top="2.40000025431315in" Value="* Please enter a value in Number of Days field to view past reports. For eg: To view yesterdays enter 1,day before yesterday 2 so on." Name="textBox12" />
+        <TextBox Width="1.40000009536743in" Height="0.39999994635582in" Left="2.29999987284342in" Top="3.00000031789144in" Value="Report generated at:" Name="textBox13">
+          <Style Color="DarkBlue" />
+        </TextBox>
+        <TextBox Width="1.68541622161865in" Height="0.289583206176758in" Left="3.60000006357829in" Top="3.00000031789144in" Value="=Now()" TextWrap="False" Name="textBox14" StyleName="timestampstyle">
+          <Style BackgroundColor="White" Color="DarkBlue" LineColor="Black" />
+        </TextBox>
+      </Items>
+    </DetailSection>
+    <PageFooterSection Height="1in" Name="pageFooterSection1" />
+  </Items>
+  <StyleSheet>
+    <StyleRule>
+      <Style>
+        <Padding Left="2pt" Right="2pt" />
+      </Style>
+      <Selectors>
+        <TypeSelector Type="TextItemBase" />
+        <TypeSelector Type="HtmlTextBox" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style Color="Black">
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+        <Font Name="Tahoma" Size="9pt" />
+      </Style>
+      <Selectors>
+        <StyleSelector Type="Table" StyleName="Corporate.TableNormal" />
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style>
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+        <Font Name="Tahoma" Size="9pt" />
+      </Style>
+      <Selectors>
+        <DescendantSelector>
+          <Selectors>
+            <TypeSelector Type="Table" />
+            <StyleSelector Type="ReportItem" StyleName="Corporate.TableBody" />
+          </Selectors>
+        </DescendantSelector>
+      </Selectors>
+    </StyleRule>
+    <StyleRule>
+      <Style BackgroundColor="28, 58, 112" Color="White" VerticalAlign="Middle">
+        <BorderStyle Default="Solid" />
+        <BorderColor Default="Black" />
+        <BorderWidth Default="1px" />
+        <Font Name="Tahoma" Size="10pt" />
+      </Style>
+      <Selectors>
+        <DescendantSelector>
+          <Selectors>
+            <TypeSelector Type="Table" />
+            <StyleSelector Type="ReportItem" StyleName="Corporate.TableHeader" />
+          </Selectors>
+        </DescendantSelector>
+      </Selectors>
+    </StyleRule>
+  </StyleSheet>
+  <PageSettings>
+    <PageSettings PaperKind="Letter" Landscape="False" ColumnCount="1" ColumnSpacing="0in">
+      <Margins>
+        <MarginsU Left="1in" Right="1in" Top="1in" Bottom="1in" />
+      </Margins>
+    </PageSettings>
+  </PageSettings>
+  <ReportParameters>
+    <ReportParameter Name="AlarmActive" Text="AlarmActive" Visible="True" AllowNull="True" AutoRefresh="True">
+      <AvailableValues DataSourceName="active-alarm-CIDlDataSource" ValueMember="= Fields.Active" />
+    </ReportParameter>
+    <ReportParameter Name="Tag" Text="Alarm Desc." Visible="True" AllowNull="True" AutoRefresh="True">
+      <AvailableValues DataSourceName="tag-alarm-CIDDataSource" ValueMember="= Fields.AlarmText" />
+    </ReportParameter>
+    <ReportParameter Name="Gate" Text="Gate" Visible="True" AllowNull="True" AutoRefresh="True">
+      <AvailableValues DataSourceName="gate-alarm-CIDDataSource" ValueMember="= Fields.Gate" />
+    </ReportParameter>
+    <ReportParameter Name="fromDays" Type="DateTime" Text="* From Date" Visible="True" AllowNull="True" AutoRefresh="True" />
+    <ReportParameter Name="toDays" Type="DateTime" Text="* To Date" Visible="True" AllowNull="True" AutoRefresh="True" />
+  </ReportParameters>
+</Report>
